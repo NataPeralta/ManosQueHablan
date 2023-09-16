@@ -3,7 +3,7 @@ import {HamburgerIcon, CloseIcon} from "@chakra-ui/icons";
 import {NavLink, Link} from "react-router-dom";
 
 const Links = [
-  {label: "Home", link: "home"},
+  {label: "Home", link: ""},
   {label: "Pagos", link: "payments"},
   {label: "Estudiantes", link: "students"},
   {label: "Cursos", link: "courses"},
@@ -61,3 +61,4 @@ export default function Simple() {
     </>
   );
 }
+

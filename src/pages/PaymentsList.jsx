@@ -7,7 +7,7 @@ import "alertifyjs/build/css/alertify.css";
 import React, {useState, useEffect} from "react";
 import {AiOutlineEdit} from "react-icons/ai";
 import { BsTrash} from "react-icons/bs";
-import { accountsOptions, modalityOptions} from "../assets/variablesGlobals.jsx";
+import {accountsOptions, modalityOptions} from "../assets/variablesGlobals.jsx";
 import {Center, Heading, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, Button, useDisclosure, Input, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Stack} from "@chakra-ui/react";
 
 const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
@@ -30,7 +30,6 @@ const PaymentsList = () => {
   const [paymentData, setPaymentData] = useState(null);
   const [allPayments, setAllPayments] = useState([]);
   const cancelRef = React.useRef();
-  const btnRef = React.useRef();
 
   const showData = async () => {
     const listPayments = await pb.collection("payments").getFullList();
@@ -39,7 +38,7 @@ const PaymentsList = () => {
     const mapListStudents = new Map(listStudents.map((student) => [student.id, student]));
     const listPaymentsFormat = listPayments.map((payment) => ({
       ...payment,
-      payday: new Date(payment.payday).toLocaleDateString("es-AR", {year: "2-digit", month: "2-digit", day: "2-digit"}),
+      payday: new Date(payment.payday).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "2-digit"}),
     }));
     const listPaymentsWithUsers = listPaymentsFormat.map((payment) => {
       const student = mapListStudents.get(payment.person);
@@ -106,10 +105,14 @@ const PaymentsList = () => {
   };
 
   const deletePayment = async (id) => {
-    const record = await pb.collection("payments").delete(id); // Cambiado de "payment" a "payments"
+    const record = await pb.collection("payments").delete(id); 
     console.log(record);
     alertify.success("Pago Eliminado");
   };
+
+  if (!allPayments) {
+    return <p>Cargando...</p>;
+  }
 
   useEffect(() => {
     showData();
@@ -123,7 +126,7 @@ const PaymentsList = () => {
         </Heading>
       </Center>
 
-      {/*Create Payment */}
+      {/*Create Payment Btn*/}
       <Button
         onClick={() => {
           drawerCreateOnOpen();
@@ -133,7 +136,7 @@ const PaymentsList = () => {
       </Button>
 
       {/*Create Payment */}
-      <Drawer size={"md"} isOpen={drawerCreateIsOpen} placement="right" onClose={drawerCreateOnClose} finalFocusRef={btnRef}>
+      <Drawer size={"md"} isOpen={drawerCreateIsOpen} placement="right" onClose={drawerCreateOnClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -272,7 +275,6 @@ const PaymentsList = () => {
                   <Stack spacing={2}>
                     <Button
                       colorScheme="green"
-                      ref={btnRef}
                       onClick={() => {
                         setChangePaymentData(payment);
                         drawerEditOnOpen();
@@ -297,8 +299,8 @@ const PaymentsList = () => {
         </Table>
       </TableContainer>
 
-      {/*Edit Drawer */}
-      <Drawer size={"md"} isOpen={drawerEditIsOpen} placement="right" onClose={drawerEditOnClose} finalFocusRef={btnRef}>
+      {/*Edit Payment */}
+      <Drawer size={"md"} isOpen={drawerEditIsOpen} placement="right" onClose={drawerEditOnClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -391,6 +393,7 @@ const PaymentsList = () => {
         </DrawerContent>
       </Drawer>
 
+      {/* Delete Payment */}
       <AlertDialog motionPreset="slideInBottom" leastDestructiveRef={cancelRef} onClose={alertOnClose} isOpen={alertIsOpen} isCentered>
         <AlertDialogContent>
           <AlertDialogHeader>Estas segur@?</AlertDialogHeader>

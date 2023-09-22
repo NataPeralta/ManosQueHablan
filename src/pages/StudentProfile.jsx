@@ -16,9 +16,10 @@ const UserProfile = () => {
   const {isOpen: alertIsOpen, onOpen: alertOnOpen, onClose: alertOnClose} = useDisclosure();
   const {isOpen: drawerEditIsOpen, onOpen: drawerEditOnOpen, onClose: drawerEditOnClose} = useDisclosure();
   const {isOpen: drawerCreateIsOpen, onOpen: drawerCreateOnOpen, onClose: drawerCreateOnClose} = useDisclosure();
-  const cancelRef = React.useRef();
   const [studentData, setStudentData] = useState(null);
-    const [paymentData, setPaymentData] = useState(null);
+  const [paymentData, setPaymentData] = useState(null);
+  const [allPayments, setAllPayments] = useState([]);
+  const cancelRef = React.useRef();
   const [changeStudentData, setChangeStudentData] = useState({
     name: "",
     document: "",
@@ -40,8 +41,7 @@ const UserProfile = () => {
     billing: "",
     invoice: "",
   });
-  const [allPayments, setAllPayments] = useState([]);
-  const btnRef = React.useRef();
+
 
 
 
@@ -88,8 +88,6 @@ const UserProfile = () => {
     }, 1000);
   };
 
-
-
   const createNewPayment = async (paymentData) => {
     if (!paymentData.account) {
       return alertify.error("El campo 'Cuenta' es obligatorio");
@@ -115,6 +113,7 @@ const UserProfile = () => {
       alertify.error("Error al crear el pago");
     }
   };
+
   const updatePayment = async (data) => {
     const dataSave = {
       ...data,
@@ -219,7 +218,6 @@ const UserProfile = () => {
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
-              ref={btnRef}
               onClick={() => {
                 drawerEditOnOpen();
               }}
@@ -237,7 +235,6 @@ const UserProfile = () => {
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
-              ref={btnRef}
               onClick={alertOnOpen}
             >
               Eliminar Usuario
@@ -255,7 +252,7 @@ const UserProfile = () => {
         </Button>
 
         {/*Create Payment */}
-        <Drawer size={"md"} isOpen={drawerCreateIsOpen} placement="right" onClose={drawerCreateOnClose} finalFocusRef={btnRef}>
+        <Drawer size={"md"} isOpen={drawerCreateIsOpen} placement="right" onClose={drawerCreateOnClose}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
@@ -383,7 +380,6 @@ const UserProfile = () => {
                     <Stack spacing={2}>
                       <Button
                         colorScheme="green"
-                        ref={btnRef}
                         onClick={() => {
                           setChangePaymentData(payment);
                           drawerEditOnOpen();
@@ -409,7 +405,7 @@ const UserProfile = () => {
         </TableContainer>
 
         {/*Edit Payment */}
-        <Drawer size={"md"} isOpen={drawerEditIsOpen} placement="right" onClose={drawerEditOnClose} finalFocusRef={btnRef}>
+        <Drawer size={"md"} isOpen={drawerEditIsOpen} placement="right" onClose={drawerEditOnClose}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
@@ -532,7 +528,7 @@ const UserProfile = () => {
         </AlertDialog>
 
         {/*Edit Student */}
-        <Drawer size={"md"} isOpen={drawerEditIsOpen} placement="right" onClose={drawerEditOnClose} finalFocusRef={btnRef}>
+        <Drawer size={"md"} isOpen={drawerEditIsOpen} placement="right" onClose={drawerEditOnClose}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />

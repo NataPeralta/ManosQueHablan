@@ -21,7 +21,7 @@ const attendsList = {
   },
 };
 
-const attendsOptions = Object.entries(attendsList).flatMap(([year, months]) =>
+export const attendsOptions = Object.entries(attendsList).flatMap(([year, months]) =>
   Object.entries(months).flatMap(([month, values]) =>
     values.map((value) => ({
       value: `${month}${year.slice(-2)}-${value}`,
@@ -31,15 +31,15 @@ const attendsOptions = Object.entries(attendsList).flatMap(([year, months]) =>
 );
 
 const modalityList = ["Asincronico", "Sincronico"];
-const modalityOptions = modalityList.map((attend) => ({
+export const modalityOptions = modalityList.map((attend) => ({
   value: attend,
   label: attend,
 }));
 
 const cuentasUnicas = ["MP Instituto", "Bco Sonia", "MP Facu", "MP Sonia", "Bco Facu", "Dani"];
-const accountsOptions = cuentasUnicas.map((attend) => ({
+export const accountsOptions = cuentasUnicas.map((attend) => ({
   value: attend,
   label: attend,
 }));
 
-export default {attendsOptions, accountsOptions, modalityOptions};
+

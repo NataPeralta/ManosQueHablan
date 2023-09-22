@@ -6,7 +6,7 @@ import PocketBase from "pocketbase";
 import Select from "react-select";
 import {AiOutlineEdit} from "react-icons/ai";
 import {BsTrash} from "react-icons/bs";
-import {attendsOptions, accountsOptions, modalityOptions} from "../assets/variablesGlobals";
+import {attendsOptions, accountsOptions, modalityOptions} from "../assets/variablesGlobals.jsx";
 import {Textarea, ListItem, Text, Button, useDisclosure, Container, Input, Stack, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerFooter, Heading, Box, StackDivider, List, SimpleGrid, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Center} from "@chakra-ui/react";
 
 const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");

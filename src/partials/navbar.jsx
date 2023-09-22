@@ -1,13 +1,15 @@
+
 import {Box, Flex, HStack, IconButton, useDisclosure, useColorModeValue, Stack} from "@chakra-ui/react";
 import {HamburgerIcon, CloseIcon} from "@chakra-ui/icons";
 import {NavLink, Link} from "react-router-dom";
 
 const Links = [
-  {label: "Home", link: ""},
-  {label: "Pagos", link: "payments"},
-  {label: "Estudiantes", link: "students"},
-  {label: "Cursos", link: "courses"},
+  {label: "Home", href: ""},
+  {label: "Pagos", href: "payments"},
+  {label: "Estudiantes", href: "students"},
+  {label: "Cursos", href: "courses"},
 ];
+
 
 export default function Simple() {
   const {isOpen, onOpen, onClose} = useDisclosure();
@@ -19,17 +21,20 @@ export default function Simple() {
           <IconButton size={"md"} icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label={"Open Menu"} display={{md: "none"}} onClick={isOpen ? onClose : onOpen} />
           <HStack spacing={8} alignItems={"center"}>
             <HStack as={"nav"} spacing={4} display={{base: "none", md: "flex"}}>
-              {Links.map((link) => (
-                <NavLink key={link.label}>
-                  <Link to={`/${link.link}`}
-                    as="a" px={2}
+              {Links.map(({label, href}) => (
+                <NavLink key={label}>
+                  <Link
+                    to={`/${href}`}
+                    as="a"
+                    px={2}
                     py={1}
                     rounded={"md"}
-                    _hover=
-                    {{
+                    _hover={{
                       textDecoration: "none",
                     }}
-                    href={`/${link.link}`}>{link.label}
+                    href={`/${href}`}
+                  >
+                    {label}
                   </Link>
                 </NavLink>
               ))}
@@ -40,19 +45,25 @@ export default function Simple() {
         {isOpen ? (
           <Box pb={4} display={{md: "none"}}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <Box key={link.label}>
-                  <Link to={`/${link.link}`}
-                    as="a" px={2}
+              {Links.map(({label, href}) => (
+                <NavLink key={label}>
+                  <Link
+                    to={`/${href}`}
+                    as="a"
+                    px={2}
                     py={1}
                     rounded={"md"}
-                    _hover=
-                    {{
+                    _hover={{
                       textDecoration: "none",
                     }}
-                    href={`/${link.link}`}>{link.label}
+                    href={`/${href}`}
+                    onClick={() => {
+                      onClose();
+                    }}
+                  >
+                    {label}
                   </Link>
-                </Box>
+                </NavLink>
               ))}
             </Stack>
           </Box>

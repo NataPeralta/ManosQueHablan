@@ -24,13 +24,13 @@ const UserList = () => {
         </Heading>
       </Center>
 
-      <TableContainer>
+      <TableContainer id="students">
         <Table variant="simple">
           <Thead>
             <Tr>
               <Th>Id</Th>
               <Th>Nombre</Th>
-              <Th>Cursos</Th>
+              <Th>Cursos inscripto</Th>
             </Tr>
           </Thead>
           <Tbody>

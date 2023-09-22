@@ -7,7 +7,7 @@ import "alertifyjs/build/css/alertify.css";
 import React, {useState, useEffect} from "react";
 import {AiOutlineEdit} from "react-icons/ai";
 import { BsTrash} from "react-icons/bs";
-
+import { accountsOptions, modalityOptions} from "../assets/variablesGlobals";
 import {Center, Heading, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, Button, useDisclosure, Input, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Stack} from "@chakra-ui/react";
 
 const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
@@ -48,17 +48,6 @@ const PaymentsList = () => {
     setAllPayments(listPaymentsWithUsers);
   };
 
-  const modalityList = ["Asincronico", "Sincronico"];
-  const modalityOptions = modalityList.map((attend) => ({
-    value: attend,
-    label: attend,
-  }));
-
-  const cuentasUnicas = ["MP Instituto", "Bco Sonia", "MP Facu", "MP Sonia", "Bco Facu", "Dani"];
-  const accountsOptions = cuentasUnicas.map((attend) => ({
-    value: attend,
-    label: attend,
-  }));
 
   const studentsOptions = async (inputValue) => {
     try {

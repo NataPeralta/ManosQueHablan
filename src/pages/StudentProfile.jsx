@@ -6,6 +6,7 @@ import PocketBase from "pocketbase";
 import Select from "react-select";
 import {AiOutlineEdit} from "react-icons/ai";
 import {BsTrash} from "react-icons/bs";
+import {attendsOptions, accountsOptions, modalityOptions} from "../assets/variablesGlobals";
 import {Textarea, ListItem, Text, Button, useDisclosure, Container, Input, Stack, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerFooter, Heading, Box, StackDivider, List, SimpleGrid, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Center} from "@chakra-ui/react";
 
 const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
@@ -42,11 +43,7 @@ const UserProfile = () => {
   const [allPayments, setAllPayments] = useState([]);
   const btnRef = React.useRef();
 
-  const attendsList = ["Mar23-N1", "Mar23-N2", "Mar23-N3", "Mar23-N4", "Mar23-N5", "Mar23-N6", "Ago23-N1", "Ago23-N2", "Ago23-N3", "Ago23-N4", "Ago23-N5", "Ago23-N6", "Mar22-N1", "Mar22-N2", "Mar22-N3", "Mar22-N4", "Mar22-N5", "Mar22-N6", "Ago22-N1", "Ago22-N2", "Ago22-N3", "Ago22-N4", "Ago22-N5", "Ago22-N6", "Mar21-N1", "Mar21-N2", "Mar21-N3", "Mar21-N4", "Mar21-N5", "Mar21-N6", "Ago21-N1", "Ago21-N2", "Ago21-N3", "Ago21-N4", "Ago21-N5", "Ago21-N6", "Mar20-N1", "Mar20-N2", "Mar20-N3", "Mar20-N4", "Mar20-N5", "Mar20-N6", "Ago20-N1", "Ago20-N2", "Ago20-N3", "Ago20-N4", "Ago20-N5", "Ago20-N6", "Mar19-N1", "Mar19-N2", "Mar19-N3", "Mar19-N4", "Mar19-N5", "Mar19-N6", "Ago19-N1", "Ago19-N2", "Ago19-N3", "Ago19-N4", "Ago19-N5", "Ago19-N6"];
-  const attendsOptions = attendsList.map((attend) => ({
-    value: attend,
-    label: attend,
-  }));
+
 
   const fetchData = async () => {
     const studentPayments = await pb.collection("payments").getFullList({filter: `person="${studentId}"`});
@@ -91,17 +88,7 @@ const UserProfile = () => {
     }, 1000);
   };
 
-  const modalityList = ["Asincronico", "Sincronico"];
-  const modalityOptions = modalityList.map((attend) => ({
-    value: attend,
-    label: attend,
-  }));
 
-  const cuentasUnicas = ["MP Instituto", "Bco Sonia", "MP Facu", "MP Sonia", "Bco Facu", "Dani"];
-  const accountsOptions = cuentasUnicas.map((attend) => ({
-    value: attend,
-    label: attend,
-  }));
 
   const createNewPayment = async (paymentData) => {
     if (!paymentData.account) {

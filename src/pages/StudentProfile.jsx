@@ -338,7 +338,7 @@ const UserProfile = () => {
           </DrawerContent>
         </Drawer>
 
-        <TableContainer>
+        <TableContainer id="payments">
           <Table variant="simple">
             <Thead>
               <Tr>

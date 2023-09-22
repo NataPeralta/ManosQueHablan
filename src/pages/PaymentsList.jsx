@@ -230,7 +230,7 @@ const PaymentsList = () => {
       </Drawer>
 
       <TableContainer>
-        <Table variant="simple">
+        <Table id="payments">
           <Thead>
             <Tr>
               <Th>Dia de pago</Th>
@@ -239,8 +239,8 @@ const PaymentsList = () => {
               <Th>Cuenta</Th>
               <Th>Concepto</Th>
               <Th>Modalidad</Th>
-              <Th>Comprobante de Transferencia</Th>
-              <Th>Factura</Th>
+              <Th>Nro. de Transferencia</Th>
+              <Th>Nro. de Factura</Th>
               <Th>Opciones</Th>
             </Tr>
           </Thead>

@@ -42,4 +42,18 @@ export const accountsOptions = cuentasUnicas.map((attend) => ({
   label: attend,
 }));
 
+export function transformDateFormat(inputDate) {
+  const dateParts = inputDate.split("/");
 
+  const year = "20" + dateParts[2];
+
+  const month = Number(dateParts[1]);
+  const day = Number(dateParts[0]);
+
+  if (!isNaN(month) && !isNaN(day)) {
+    const paddedMonth = month < 10 ? "0" + month : month.toString();
+    const paddedDay = day < 10 ? "0" + day : day.toString();
+
+    return `${year}-${paddedMonth}-${paddedDay}`;
+  }
+}

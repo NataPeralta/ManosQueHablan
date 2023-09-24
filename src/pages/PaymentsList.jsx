@@ -7,13 +7,15 @@ import EditPayment from "../components/EditPayment.jsx";
 import DeletePayment from "../components/DeletePayment.jsx";
 import CreatePayment from "../components/CreatePayment.jsx";
 
-const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
+const pb = new PocketBase("http://127.0.0.1:8090");
 
 const PaymentsList = () => {
   const [allPayments, setAllPayments] = useState([]);
 
   const showData = async () => {
-    const listPayments = await pb.collection("payments").getFullList();
+    const listPayments = await pb.collection("payments").getFullList({
+      sort: "-created",
+    });
     const listStudents = await pb.collection("students").getFullList();
 
     const mapListStudents = new Map(listStudents.map((student) => [student.id, student]));
@@ -28,14 +30,13 @@ const PaymentsList = () => {
     setAllPayments(listPaymentsWithUsers);
   };
 
-
   if (!allPayments) {
     return <p>Cargando...</p>;
   }
 
   useEffect(() => {
     showData();
-  }, [allPayments]);
+  }, []);
 
   return (
     <div className="App">
@@ -105,9 +106,3 @@ const PaymentsList = () => {
 };
 
 export default PaymentsList;
-
-
-
-
-
-

@@ -1,19 +1,22 @@
+/* eslint-disable react/prop-types */
 import {Center, Text, Button, useDisclosure, Input, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Stack} from "@chakra-ui/react";
-import {accountsOptions, modalityOptions} from "../assets/variablesGlobals.jsx";
-import  {useState} from "react";
+import {accountsOptions, modalityOptions, transformDateFormat} from "../assets/variablesGlobals.jsx";
+
+import {useState} from "react";
 import {AiOutlineEdit} from "react-icons/ai";
 import PocketBase from "pocketbase";
 import Select from "react-select";
 import alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
 
-const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
+const pb = new PocketBase("http://127.0.0.1:8090");
 
-
-{/* Edit Payment */}
-const EditPayment = ( payment ) => {
-  const { isOpen: drawerEditIsOpen, onOpen: drawerEditOnOpen, onClose: drawerEditOnClose } = useDisclosure();
-  const [editedPayment, setEditedPayment] = useState(payment); 
+{
+  /* Edit Payment */
+}
+const EditPayment = ({payment}) => {
+  const {isOpen: drawerEditIsOpen, onOpen: drawerEditOnOpen, onClose: drawerEditOnClose} = useDisclosure();
+  const [editedPayment, setEditedPayment] = useState(payment);
 
   const updatePayment = async (data) => {
     try {
@@ -34,7 +37,7 @@ const EditPayment = ( payment ) => {
     <>
       <Button
         colorScheme="green"
-        width={{ base: "100%", md: "auto" }}
+        width={{base: "100%", md: "auto"}}
         onClick={() => {
           drawerEditOnOpen();
         }}
@@ -57,19 +60,25 @@ const EditPayment = ( payment ) => {
               <Select
                 options={modalityOptions}
                 placeholder="Modalidad"
-                defaultValue={editedPayment.modality}
+                defaultValue={{
+                  value: editedPayment.modality,
+                  label: editedPayment.modality,
+                }}
                 isSearchable={false}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, modality: e.value });
+                  setEditedPayment({...editedPayment, modality: e.value});
                 }}
               />
               <Select
                 options={accountsOptions}
                 placeholder="Cuenta"
-                defaultValue={editedPayment.account}
+                defaultValue={{
+                  value: editedPayment.account,
+                  label: editedPayment.account,
+                }}
                 isSearchable={false}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, account: e.value });
+                  setEditedPayment({...editedPayment, account: e.value});
                 }}
               />
               <Input
@@ -77,7 +86,7 @@ const EditPayment = ( payment ) => {
                 placeholder="Monto"
                 defaultValue={editedPayment.amount}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, amount: e.target.value });
+                  setEditedPayment({...editedPayment, amount: e.target.value});
                 }}
               />
               <Input
@@ -85,16 +94,16 @@ const EditPayment = ( payment ) => {
                 placeholder="Concepto"
                 defaultValue={editedPayment.concept}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, concept: e.target.value });
+                  setEditedPayment({...editedPayment, concept: e.target.value});
                 }}
               />
               <Input
                 size="md"
                 type="date"
                 placeholder="Dia de pago"
-                defaultValue={editedPayment.payday}
+                defaultValue={transformDateFormat(editedPayment.payday)}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, payday: e.target.value });
+                  setEditedPayment({...editedPayment, payday: e.target.value});
                 }}
               />
               <Input
@@ -102,7 +111,7 @@ const EditPayment = ( payment ) => {
                 placeholder="Nro. de Transferencia"
                 defaultValue={editedPayment.billing}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, billing: e.target.value });
+                  setEditedPayment({...editedPayment, billing: e.target.value});
                 }}
               />
               <Input
@@ -110,7 +119,7 @@ const EditPayment = ( payment ) => {
                 placeholder="Nro. Factura"
                 defaultValue={editedPayment.invoice}
                 onChange={(e) => {
-                  setEditedPayment({ ...editedPayment, invoice: e.target.value });
+                  setEditedPayment({...editedPayment, invoice: e.target.value});
                 }}
               />
             </Stack>

@@ -3,7 +3,7 @@ import PocketBase from "pocketbase";
 import {Button, Card, CardBody, CardFooter, CardHeader, Center, Heading, SimpleGrid, Text} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const CoursesList = () => {
   const [coursesList, setCoursesList] = useState([]);
@@ -12,7 +12,7 @@ const CoursesList = () => {
   const fetchData = async () => {
     try {
       const courseList = await pb.collection("courses").getFullList();
-      
+
       setCoursesList(courseList);
       setLoading(false);
     } catch (error) {

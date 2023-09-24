@@ -3,7 +3,7 @@ import PocketBase from "pocketbase";
 import {Center, Heading, Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const UserList = () => {
   const [allStudents, setAllStudents] = useState([]);

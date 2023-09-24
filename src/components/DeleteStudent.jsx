@@ -4,7 +4,7 @@ import "alertifyjs/build/css/alertify.css";
 import PocketBase from "pocketbase";
 import alertify from "alertifyjs";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const DeleteStudent = (id) => {
   const {isOpen: alertIsOpen, onOpen: alertOnOpen, onClose: alertOnClose} = useDisclosure();

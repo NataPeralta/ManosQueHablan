@@ -7,7 +7,7 @@ import EditPayment from "../components/EditPayment.jsx";
 import DeletePayment from "../components/DeletePayment.jsx";
 import CreatePayment from "../components/CreatePayment.jsx";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const PaymentsList = () => {
   const [allPayments, setAllPayments] = useState([]);

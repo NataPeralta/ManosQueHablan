@@ -4,7 +4,7 @@ import {Center, Heading, Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "
 import {Link, useParams} from "react-router-dom";
 import EditCourses from "../components/EditCourses";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const Attends = () => {
   const {coursesId: id} = useParams();

@@ -9,7 +9,7 @@ import Select from "react-select";
 import alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 {
   /* Edit Payment */

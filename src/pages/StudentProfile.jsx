@@ -9,7 +9,7 @@ import "alertifyjs/build/css/alertify.css";
 import React, {useState, useEffect} from "react";
 import PocketBase from "pocketbase";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const UserProfile = () => {
   const {studentId} = useParams();
@@ -19,10 +19,10 @@ const UserProfile = () => {
   const fetchData = async () => {
     const studentPayments = await pb.collection("payments").getFullList({filter: `person="${studentId}"`});
     setAllPayments(studentPayments);
-    const record = await pb.collection("students").getOne(studentId,{
+    const record = await pb.collection("students").getOne(studentId, {
       expand: "courses",
     });
-    console.log(record)
+    console.log(record);
     setStudentData(record);
   };
 

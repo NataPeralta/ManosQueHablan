@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-di\sable react/prop-types */
 import {Button, useDisclosure, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter} from "@chakra-ui/react";
 import "alertifyjs/build/css/alertify.css";
 import {BsTrash} from "react-icons/bs";
@@ -6,7 +6,7 @@ import PocketBase from "pocketbase";
 import alertify from "alertifyjs";
 import React from "react";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const DeletePayment = ({payment}) => {
   const {isOpen: alertIsOpen, onOpen: alertOnOpen, onClose: alertOnClose} = useDisclosure();

@@ -5,7 +5,7 @@ import {Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerCon
 import {useDisclosure} from "@chakra-ui/react";
 import alertify from "alertifyjs";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const EditCourses = ({allStudents, courseData}) => {
   const [studentsInCourseOptions, setStudentsInCourseOptions] = useState([]);

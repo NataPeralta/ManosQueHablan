@@ -8,7 +8,7 @@ import PocketBase from "pocketbase";
 import alertify from "alertifyjs";
 import Select from "react-select";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const CreatePayment = ({studentData}, studentId) => {
   const {isOpen: drawerCreateIsOpen, onOpen: drawerCreateOnOpen, onClose: drawerCreateOnClose} = useDisclosure();
@@ -22,7 +22,7 @@ const CreatePayment = ({studentData}, studentId) => {
     billing: "",
     invoice: "",
   });
-console.log(createPaymentData)
+  console.log(createPaymentData);
   const createNewPayment = async (paymentData) => {
     if (!paymentData.account) {
       return alertify.error("El campo 'Cuenta' es obligatorio");

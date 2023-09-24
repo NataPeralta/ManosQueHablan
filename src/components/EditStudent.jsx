@@ -8,7 +8,7 @@ import alertify from "alertifyjs";
 import Select from "react-select";
 import {useState} from "react";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://manos-que-hablan-db.onrender.com");
 
 const EditStudent = ({student}) => {
   const {isOpen: drawerEditIsOpen, onOpen: drawerEditOnOpen, onClose: drawerEditOnClose} = useDisclosure();

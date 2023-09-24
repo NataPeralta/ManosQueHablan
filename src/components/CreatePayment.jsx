@@ -22,7 +22,7 @@ const CreatePayment = ({studentData}, studentId) => {
     billing: "",
     invoice: "",
   });
-  console.log(createPaymentData);
+
   const createNewPayment = async (paymentData) => {
     if (!paymentData.account) {
       return alertify.error("El campo 'Cuenta' es obligatorio");
